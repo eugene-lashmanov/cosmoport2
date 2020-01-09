@@ -57,4 +57,11 @@ public class ShipInfoTest {
     public int hashCode() {
         return Objects.hash(id, name, planet, shipType, prodDate, isUsed, speed, crewSize, rating);
     }
+
+    @Override
+    public String toString() {
+        return "ShipInfoTest{" +
+                "id=" + id +
+                '}';
+    }
 }

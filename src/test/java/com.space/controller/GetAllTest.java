@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import static org.springframework.test.util.AssertionErrors.assertTrue;
@@ -107,7 +108,6 @@ public class GetAllTest {
         ResultActions resultActions = mockMvc.perform(get("/rest/ships?shipType=MILITARY&after=32503672800000&before=32850741600000")
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
-
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
         List<ShipInfoTest> actual = mapper.readValue(contentAsString, typeReference);

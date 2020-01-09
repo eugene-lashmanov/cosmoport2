@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -53,9 +54,7 @@ public class ShipController {
         } else if (name == null && planet == null && isUsed == null &&
                 minCrewSize == null && maxCrewSize == null && minSpeed == null && maxSpeed == null && minRating == null &&
                 maxRating == null) {
-            Calendar calendarAfter = getCalendarAndSetBeginningOfYear(after);
-            Calendar calendarBefore = getCalendarAndSetBeginningOfYear(before);
-            return shipService.getAllShips(shipType, calendarAfter.getTime(), new Date(calendarBefore.getTime().getTime() - 1), getPageable(pageNumber, pageSize, order));
+            return shipService.getAllShips(shipType, new Date(after), new Date(before), getPageable(pageNumber, pageSize, order));
         } else if (name == null && planet == null && after == null && before == null && isUsed == null &&
                 minCrewSize == null && maxCrewSize == null && minRating == null &&
                 maxRating == null) {
@@ -125,9 +124,7 @@ public class ShipController {
         } else if (name == null && planet == null && isUsed == null &&
                 minCrewSize == null && maxCrewSize == null && minSpeed == null && maxSpeed == null && minRating == null &&
                 maxRating == null) {
-            Calendar calendarAfter = getCalendarAndSetBeginningOfYear(after);
-            Calendar calendarBefore = getCalendarAndSetBeginningOfYear(before);
-            return shipService.getAllShipsCount(shipType, calendarAfter.getTime(), new Date(calendarBefore.getTime().getTime() - 1));
+            return shipService.getAllShipsCount(shipType, new Date(after), new Date(before));
         } else if (name == null && planet == null && after == null && before == null && isUsed == null &&
                 minCrewSize == null && maxCrewSize == null && minRating == null &&
                 maxRating == null) {
